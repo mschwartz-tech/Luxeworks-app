@@ -1,0 +1,157 @@
+:root {
+    --section-bg: #1a1a1a;
+    --button-bg: #4CAF50;
+    --button-hover: #45a049;
+    --text-color: #ffffff;
+    --border-color: #ccc;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.section {
+    background-color: var(--section-bg);
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tab-link {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.tab-link.active {
+    background-color: #ddd;
+    color: black;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#log-completion-form, #set-availability-form, #booking-form, .log-form, #create-campaign-form {
+    background-color: var(--section-bg);
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+#log-completion-form input,
+#log-completion-form textarea,
+#set-availability-form input,
+#set-availability-form select,
+#booking-form select,
+.log-form input,
+.log-form textarea,
+#campaign-form input,
+#campaign-form textarea,
+#campaign-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+}
+
+#log-completion-form textarea,
+.log-form textarea,
+#campaign-form textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+#log-completion-btn, button {
+    background-color: var(--button-bg);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#log-completion-btn:hover, button:hover {
+    background-color: var(--button-hover);
+}
+
+#cancel-log-btn, #cancel-availability-btn, .cancel-log, #cancel-campaign-btn {
+    background-color: #ff4444;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#cancel-log-btn:hover, #cancel-availability-btn:hover, .cancel-log:hover, #cancel-campaign-btn:hover {
+    background-color: #cc0000;
+}
+
+#availability-table, #sessions-table, #completion-history, #campaigns-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#availability-table th, #availability-table td,
+#sessions-table th, #sessions-table td,
+#completion-history th, #completion-history td,
+#campaigns-table th, #campaigns-table td {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+#availability-table th, #sessions-table th, #completion-history th, #campaigns-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.plan {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+}
+
+.progress-bar {
+    background-color: var(--button-bg);
+    height: 20px;
+    margin: 5px 0;
+    border-radius: 3px;
+    text-align: center;
+    color: white;
+}
+
+.metrics {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.metrics p {
+    margin: 5px 0;
+}

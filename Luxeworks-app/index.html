@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Studio Admin App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="navigation">
+        <button class="section-btn" data-section="dashboard">Dashboard</button>
+        <button class="section-btn" data-section="members">Members</button>
+        <button class="section-btn" data-section="billing">Billing</button>
+        <button class="section-btn" data-section="training">Training</button>
+        <button class="section-btn" data-section="marketing">Marketing</button>
+        <button class="section-btn" data-section="settings">Settings</button>
+        <button class="section-btn" data-section="member-dashboard">Member Dashboard</button>
+        <button class="section-btn" data-section="trainer-dashboard">Trainer Dashboard</button>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="dashboard" class="section" style="display: none;">
+        <h1>Dashboard (Admin)</h1>
+        <div class="metrics">
+            <p>Active Members: <span id="admin-active-members"></span></p>
+            <p>Total Revenue: $<span id="admin-total-revenue"></span></p>
+            <p id="admin-quick-stat"></p>
+            <h3>Trainer Utilization</h3>
+            <ul id="admin-trainer-utilization"></ul>
+        </div>
+    </div>
+
+    <!-- Members -->
+    <div id="members" class="section" style="display: none;">
+        <h1>Members</h1>
+        <p>Member management features will go here.</p>
+    </div>
+
+    <!-- Billing -->
+    <div id="billing" class="section" style="display: none;">
+        <h1>Billing</h1>
+        <p>Billing and invoice management will go here.</p>
+    </div>
+
+    <!-- Training -->
+    <div id="training" class="section" style="display: none;">
+        <h1>Training</h1>
+        <div class="tabs">
+            <button class="tab-link active" data-tab="plans">Plans</button>
+            <button class="tab-link" data-tab="scheduling">Scheduling</button>
+            <button class="tab-link" data-tab="messages">Messages</button>
+        </div>
+        <div id="plans" class="tab-content active">
+            <h2>Workout Plans</h2>
+            <ul id="workout-plans-list"></ul>
+            <div id="workout-plan-details" style="display: none;">
+                <h2 id="plan-name"></h2>
+                <p><strong>Assigned to:</strong> <span id="assigned-member"></span></p>
+                <h3>Exercises</h3>
+                <ul id="exercises-list"></ul>
+                <h3>Completion History</h3>
+                <table id="completion-history">
+                    <thead><tr><th>Date</th><th>Notes</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+                <button id="log-completion-btn">Log Completion</button>
+                <div id="log-completion-form" style="display: none;">
+                    <h3>Log Workout Completion</h3>
+                    <form id="submit-completion-form">
+                        <label for="completion-date">Date:</label>
+                        <input type="date" id="completion-date" name="completion-date" required><br>
+                        <label for="completion-notes">Notes (Optional):</label>
+                        <textarea id="completion-notes" name="completion-notes" placeholder="Add notes"></textarea><br>
+                        <button type="submit">Save Completion</button>
+                        <button type="button" id="cancel-log-btn">Cancel</button>
+                    </form>
+                </div>
+                <h3>Messages</h3>
+                <ul id="message-history"></ul>
+                <form id="send-message-form">
+                    <textarea id="message-text" placeholder="Type your message"></textarea>
+                    <button type="submit">Send</button>
+                    <button type="button" id="simulate-reply-btn">Simulate Member Reply</button>
+                </form>
+                <button id="close-details-btn">Close</button>
+            </div>
+        </div>
+        <div id="scheduling" class="tab-content" style="display: none;">
+            <h2>Scheduling</h2>
+            <button id="set-availability-btn">Set Trainer Availability</button>
+            <div id="set-availability-form" style="display: none;">
+                <h3>Set Availability</h3>
+                <form id="availability-form">
+                    <label for="availability-day">Day:</label>
+                    <select id="availability-day" name="day" required>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select><br>
+                    <label for="start-time">Start Time:</label>
+                    <input type="time" id="start-time" name="start-time" required><br>
+                    <label for="end-time">End Time:</label>
+                    <input type="time" id="end-time" name="end-time" required><br>
+                    <button type="submit">Add Slot</button>
+                    <button type="button" id="cancel-availability-btn">Cancel</button>
+                </form>
+            </div>
+            <h3>Trainer Availability</h3>
+            <table id="availability-table">
+                <thead><tr><th>Day</th><th>Start Time</th><th>End Time</th><th>Actions</th></tr></thead>
+                <tbody></tbody>
+            </table>
+            <h3>Book a Session</h3>
+            <form id="booking-form">
+                <label for="booking-member">Member:</label>
+                <select id="booking-member" name="member" required></select><br>
+                <label for="booking-day">Day:</label>
+                <select id="booking-day" name="day" required></select><br>
+                <label for="booking-time">Time Slot:</label>
+                <select id="booking-time" name="time" required></select><br>
+                <button type="submit">Book Session</button>
+            </form>
+            <h3>Upcoming Sessions</h3>
+            <table id="sessions-table">
+                <thead><tr><th>Member</th><th>Day</th><th>Time</th><th>Actions</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="messages" class="tab-content" style="display: none;">
+            <h2>Messages</h2>
+            <p>Threaded messaging will go here.</p>
+        </div>
+    </div>
+
+    <!-- Marketing -->
+    <div id="marketing" class="section" style="display: none;">
+        <h1>Marketing</h1>
+        <button id="create-campaign-btn">Create New Campaign</button>
+        <div id="create-campaign-form" style="display: none;">
+            <h2>Create Campaign</h2>
+            <form id="campaign-form">
+                <label for="campaign-title">Title:</label>
+                <input type="text" id="campaign-title" name="title" required><br>
+                <label for="campaign-description">Description:</label>
+                <textarea id="campaign-description" name="description"></textarea><br>
+                <label for="campaign-audience">Target Audience:</label>
+                <select id="campaign-audience" name="targetAudience" required>
+                    <option value="all">All Members</option>
+                    <option value="active">Active Members</option>
+                    <option value="inactive">Inactive Members</option>
+                </select><br>
+                <label for="campaign-start">Start Date:</label>
+                <input type="date" id="campaign-start" name="startDate" required><br>
+                <label for="campaign-end">End Date:</label>
+                <input type="date" id="campaign-end" name="endDate" required><br>
+                <label for="campaign-status">Status:</label>
+                <select id="campaign-status" name="status" required>
+                    <option value="Draft">Draft</option>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                </select><br>
+                <button type="submit">Save Campaign</button>
+                <button type="button" id="cancel-campaign-btn">Cancel</button>
+            </form>
+        </div>
+        <div id="edit-campaign-form" style="display: none;">
+            <h2>Edit Campaign</h2>
+            <form id="edit-campaign-form-inner">
+                <input type="hidden" id="edit-campaign-id" name="id">
+                <label for="edit-campaign-title">Title:</label>
+                <input type="text" id="edit-campaign-title" name="title" required><br>
+                <label for="edit-campaign-description">Description:</label>
+                <textarea id="edit-campaign-description" name="description"></textarea><br>
+                <label for="edit-campaign-audience">Target Audience:</label>
+                <select id="edit-campaign-audience" name="targetAudience" required>
+                    <option value="all">All Members</option>
+                    <option value="active">Active Members</option>
+                    <option value="inactive">Inactive Members</option>
+                </select><br>
+                <label for="edit-campaign-start">Start Date:</label>
+                <input type="date" id="edit-campaign-start" name="startDate" required><br>
+                <label for="edit-campaign-end">End Date:</label>
+                <input type="date" id="edit-campaign-end" name="endDate" required><br>
+                <label for="edit-campaign-status">Status:</label>
+                <select id="edit-campaign-status" name="status" required>
+                    <option value="Draft">Draft</option>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                </select><br>
+                <button type="submit">Update Campaign</button>
+                <button type="button" id="cancel-edit-campaign-btn">Cancel</button>
+            </form>
+        </div>
+        <h2>Campaigns</h2>
+        <table id="campaigns-table">
+            <thead><tr><th>Title</th><th>Audience</th><th>Start Date</th><th>End Date</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody></tbody>
+        </table>
+        <div id="campaign-analytics" style="display: none;">
+            <h2>Campaign Analytics</h2>
+            <div class="metrics">
+                <p>Reach: <span id="campaign-reach"></span> members</p>
+                <p>Engagement: <span id="campaign-engagement"></span> (Workouts: <span id="campaign-workouts"></span>, Bookings: <span id="campaign-bookings"></span>)</p>
+                <p>Engagement Rate: <span id="campaign-rate"></span>%</p>
+                <p>Tip: <span id="campaign-tip"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings" class="section" style="display: none;">
+        <h1>Settings</h1>
+        <p>App settings and preferences will go here.</p>
+    </div>
+
+    <!-- Member Dashboard -->
+    <div id="member-dashboard" class="section" style="display: none;">
+        <h1>Member Dashboard</h1>
+        <div class="metrics">
+            <p>Sessions Attended: <span id="member-sessions-attended"></span></p>
+            <p>Active Plans: <span id="member-active-plans"></span></p>
+            <p>Streak: <span id="member-streak"></span> days</p>
+            <p id="member-quick-stat"></p>
+            <p id="member-action"></p>
+        </div>
+        <h2>My Plans</h2>
+        <div id="my-plans"></div>
+    </div>
+
+    <!-- Trainer Dashboard -->
+    <div id="trainer-dashboard" class="section" style="display: none;">
+        <h1>Trainer Dashboard</h1>
+        <div class="metrics">
+            <p>Assigned Members: <span id="trainer-assigned-members"></span></p>
+            <p>Member Engagement: <span id="trainer-engagement"></span>%</p>
+            <p id="trainer-quick-stat"></p>
+            <h3>Upcoming Sessions</h3>
+            <ul id="trainer-upcoming-sessions"></ul>
+        </div>
+        <h2>My Members</h2>
+        <div id="my-members"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
